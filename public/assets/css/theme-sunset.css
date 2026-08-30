@@ -1,0 +1,149 @@
+/* ========================================
+   @name Sunset (orange & violet, clair & sombre)
+   @color #171019
+   @accent #fb923c
+   Thème crépusculaire : accents orange corail
+   et fuchsia. Deux variantes complètes :
+   claire (crème chaleureuse) et sombre
+   (violet profond).
+
+   SEO-FRIENDLY :
+   - 100% CSS : aucune modification du HTML sémantique
+   - Aucun contenu masqué
+   - Contrastes élevés dans les deux variantes
+   ======================================== */
+
+/* ---------- Variante CLAIRE (défaut) ---------- */
+body.theme-sunset {
+    --primary: #ea580c;
+    --primary-hover: #c2410c;
+    --secondary: #c026d3;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --info: #2563eb;
+    --bg: #fdf7f0;
+    --bg-card: #ffffff;
+    --bg-sidebar: #ffffff;
+    --bg-header: rgba(255, 255, 255, 0.92);
+    --text: #3b1d33;
+    --text-muted: #7a6478;
+    --border: #f0dccb;
+    --shadow: 0 1px 3px rgba(59, 29, 51, 0.08), 0 1px 2px rgba(59, 29, 51, 0.04);
+    --shadow-lg: 0 10px 30px -5px rgba(234, 88, 12, 0.16), 0 4px 10px rgba(59, 29, 51, 0.06);
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ---------- Variante SOMBRE ---------- */
+html[data-theme="dark"] body.theme-sunset {
+    --primary: #fb923c;
+    --primary-hover: #fdba74;
+    --secondary: #d946ef;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --info: #60a5fa;
+    --bg: #171019;
+    --bg-card: #221726;
+    --bg-sidebar: #221726;
+    --bg-header: rgba(20, 13, 22, 0.92);
+    --text: #f6f0f4;
+    --text-muted: #b0a3ad;
+    --border: #3a2a3f;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 24px rgba(251, 146, 60, 0.1);
+}
+
+/* ---------- Composants partagés ---------- */
+body.theme-sunset .logo { color: var(--primary); }
+body.theme-sunset .nav-link:hover,
+body.theme-sunset .nav-link.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #ffffff;
+}
+body.theme-sunset .theme-toggle { border-color: var(--border); color: var(--text); }
+body.theme-sunset .theme-toggle:hover { background: var(--primary); }
+body.theme-sunset .btn-ghost { color: var(--text-muted); }
+body.theme-sunset .btn-ghost:hover { color: var(--danger); }
+body.theme-sunset .sidebar-title { color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; }
+body.theme-sunset .sidebar-link:hover { background: rgba(251, 146, 60, 0.14); color: var(--primary); }
+body.theme-sunset .stat-value { color: var(--primary); }
+body.theme-sunset .hero {
+    background: radial-gradient(ellipse at 50% 0%, rgba(217, 70, 239, 0.14), transparent 55%),
+                radial-gradient(ellipse at 50% 100%, rgba(251, 146, 60, 0.1), transparent 60%);
+    padding: 4rem 1rem 3rem;
+    color: var(--text);
+}
+body.theme-sunset .hero h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.01em; }
+body.theme-sunset .hero-subtitle { color: var(--text-muted); opacity: 1; }
+body.theme-sunset .hero .btn-outline { border-color: var(--primary); color: var(--primary); }
+body.theme-sunset .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); font-weight: 700; }
+body.theme-sunset .btn-primary:hover { background: linear-gradient(135deg, var(--primary-hover), var(--primary)); }
+body.theme-sunset .btn-outline { border-color: var(--primary); color: var(--primary); }
+body.theme-sunset .btn-outline:hover { background: var(--primary); }
+body.theme-sunset .badge { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #ffffff; }
+body.theme-sunset .link-item:hover { border-color: var(--primary); }
+body.theme-sunset .link-item.link-top { border-left-color: var(--secondary); }
+body.theme-sunset .points-badge { color: var(--primary); }
+body.theme-sunset .link-rank.rank-gold { color: var(--primary); }
+body.theme-sunset .stat-icon { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #ffffff; }
+body.theme-sunset .stat-icon.bg-success,
+body.theme-sunset .stat-icon.bg-info,
+body.theme-sunset .stat-icon.bg-warning { background: rgba(251, 146, 60, 0.15); color: var(--primary); }
+body.theme-sunset .form-control { border-color: var(--border); color: var(--text); }
+body.theme-sunset .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.2); }
+body.theme-sunset .table tr:hover { background: rgba(251, 146, 60, 0.06); }
+body.theme-sunset .page-link { border-color: var(--border); color: var(--text); }
+body.theme-sunset .page-link:hover,
+body.theme-sunset .page-link.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+body.theme-sunset .vip-card:hover { border-color: var(--primary); }
+body.theme-sunset .vip-badge { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #ffffff; }
+body.theme-sunset .vip-price { color: var(--primary); }
+body.theme-sunset .error-page h1 { color: var(--primary); }
+
+/* ---------- Ajustements spécifiques CLAIRE ---------- */
+html[data-theme="light"] body.theme-sunset ::selection { background: var(--primary); color: #ffffff; }
+html[data-theme="light"] body.theme-sunset .hero h1 { color: #3b1d33; }
+html[data-theme="light"] body.theme-sunset .hero .btn-outline:hover { color: #ffffff; }
+html[data-theme="light"] body.theme-sunset .btn-primary { color: #ffffff; box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25); }
+html[data-theme="light"] body.theme-sunset .btn-primary:hover { color: #ffffff; box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35); }
+html[data-theme="light"] body.theme-sunset .btn-outline:hover { color: #ffffff; }
+html[data-theme="light"] body.theme-sunset .theme-toggle:hover { color: #ffffff; }
+html[data-theme="light"] body.theme-sunset .form-control { background: #ffffff; }
+html[data-theme="light"] body.theme-sunset .auth-card h1 { color: #3b1d33; }
+html[data-theme="light"] body.theme-sunset .alert-success { background: rgba(5, 150, 105, 0.08); color: #047857; border-color: rgba(5, 150, 105, 0.35); }
+html[data-theme="light"] body.theme-sunset .alert-danger { background: rgba(220, 38, 38, 0.08); color: #991b1b; border-color: rgba(220, 38, 38, 0.35); }
+html[data-theme="light"] body.theme-sunset .alert-info { background: rgba(37, 99, 235, 0.08); color: #1e40af; border-color: rgba(37, 99, 235, 0.35); }
+html[data-theme="light"] body.theme-sunset .alert-warning { background: rgba(217, 119, 6, 0.08); color: #b45309; border-color: rgba(217, 119, 6, 0.35); }
+
+/* ---------- Ajustements spécifiques SOMBRE ---------- */
+html[data-theme="dark"] body.theme-sunset ::selection { background: var(--primary); color: #241005; }
+html[data-theme="dark"] body.theme-sunset .logo { text-shadow: 0 0 14px rgba(251, 146, 60, 0.5); }
+html[data-theme="dark"] body.theme-sunset .nav-link:hover,
+html[data-theme="dark"] body.theme-sunset .nav-link.active { box-shadow: 0 0 16px rgba(217, 70, 239, 0.35); }
+html[data-theme="dark"] body.theme-sunset .theme-toggle:hover { color: #241005; }
+html[data-theme="dark"] body.theme-sunset .stat-value { text-shadow: 0 0 10px rgba(251, 146, 60, 0.4); }
+html[data-theme="dark"] body.theme-sunset .hero h1 { color: #ffffff; text-shadow: 0 0 30px rgba(251, 146, 60, 0.45); }
+html[data-theme="dark"] body.theme-sunset .hero .btn-outline:hover { color: #241005; }
+html[data-theme="dark"] body.theme-sunset .btn-primary { color: #241005; box-shadow: 0 0 18px rgba(251, 146, 60, 0.3); }
+html[data-theme="dark"] body.theme-sunset .btn-primary:hover { color: #241005; box-shadow: 0 0 26px rgba(251, 146, 60, 0.5); }
+html[data-theme="dark"] body.theme-sunset .btn-outline:hover { color: #241005; }
+html[data-theme="dark"] body.theme-sunset .lang-switch a.active { color: #241005; }
+html[data-theme="dark"] body.theme-sunset .points-badge { text-shadow: 0 0 12px rgba(251, 146, 60, 0.45); }
+html[data-theme="dark"] body.theme-sunset .stat-icon { box-shadow: 0 0 14px rgba(251, 146, 60, 0.3); }
+html[data-theme="dark"] body.theme-sunset .form-control { background: #1b121e; }
+html[data-theme="dark"] body.theme-sunset .vip-card:hover { box-shadow: 0 0 24px rgba(217, 70, 239, 0.25); }
+html[data-theme="dark"] body.theme-sunset .vip-badge { box-shadow: 0 0 14px rgba(217, 70, 239, 0.4); }
+html[data-theme="dark"] body.theme-sunset .vip-price { text-shadow: 0 0 16px rgba(251, 146, 60, 0.4); }
+html[data-theme="dark"] body.theme-sunset .auth-card h1 { color: #ffffff; text-shadow: 0 0 18px rgba(251, 146, 60, 0.35); }
+html[data-theme="dark"] body.theme-sunset .error-page h1 { text-shadow: 0 0 30px rgba(251, 146, 60, 0.5); }
+html[data-theme="dark"] body.theme-sunset .alert-success { background: rgba(52, 211, 153, 0.12); color: #6ee7b7; border-color: rgba(52, 211, 153, 0.4); }
+html[data-theme="dark"] body.theme-sunset .alert-danger { background: rgba(248, 113, 113, 0.12); color: #fca5a5; border-color: rgba(248, 113, 113, 0.4); }
+html[data-theme="dark"] body.theme-sunset .alert-info { background: rgba(96, 165, 250, 0.12); color: #93c5fd; border-color: rgba(96, 165, 250, 0.4); }
+html[data-theme="dark"] body.theme-sunset .alert-warning { background: rgba(251, 191, 36, 0.12); color: #fcd34d; border-color: rgba(251, 191, 36, 0.4); }
+
+/* Responsive : titre hero réduit sur mobile */
+@media (max-width: 768px) {
+    body.theme-sunset .hero h1 { font-size: 2rem; }
+}

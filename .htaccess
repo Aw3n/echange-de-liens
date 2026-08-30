@@ -1,0 +1,14 @@
+# ============================================================
+# Echange de Liens - Redirection vers le dossier public/
+# Placez ce fichier à la racine du projet
+# ============================================================
+# Si votre sous-domaine pointe directement vers public/,
+# ce fichier n'est pas nécessaire et peut être supprimé.
+# ============================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Rediriger tout le trafic vers public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

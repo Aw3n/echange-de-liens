@@ -1,0 +1,37 @@
+# --- Données locales / sensibles : ne JAMAIS publier ni uploader ---
+config/database.php
+storage/installed.lock
+
+# Dossiers de stockage : on garde la structure vide (.gitkeep), pas le contenu
+storage/cache/*
+storage/logs/*
+storage/sessions/*
+storage/*
+!storage/cache/
+!storage/logs/
+!storage/sessions/
+!storage/cache/.gitkeep
+!storage/logs/.gitkeep
+!storage/sessions/.gitkeep
+
+# Uploads générés par le site
+public/uploads/
+
+# Page de présentation (non distribuée avec le CMS)
+public/presentation.html
+
+# Divers
+*.log
+.env
+.DS_Store
+Thumbs.db
+check_braces.ps1
+projet.odt
+tx.json
+block.json
+
+# Dépendances / IDE (au cas où)
+vendor/
+node_modules/
+.idea/
+.vscode/

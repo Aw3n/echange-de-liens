@@ -1,0 +1,153 @@
+/* ========================================
+   @name Neon (vert néon, clair & sombre)
+   @color #17170f
+   @accent #c8f31d
+   Thème à accents vert néon inspiré des
+   landing pages DePIN modernes. Deux
+   variantes complètes : claire (lime
+   profond lisible) et sombre (néon pur).
+
+   SEO-FRIENDLY :
+   - 100% CSS : aucune modification du HTML sémantique
+   - Aucun contenu masqué
+   - Contrastes élevés dans les deux variantes
+   ======================================== */
+
+/* ---------- Variante CLAIRE (défaut) ---------- */
+body.theme-neon {
+    --primary: #4d7c0f;
+    --primary-hover: #3f6212;
+    --secondary: #65a30d;
+    --success: #16a34a;
+    --warning: #ca8a04;
+    --danger: #dc2626;
+    --info: #0284c7;
+    --bg: #f6f9ec;
+    --bg-card: #ffffff;
+    --bg-sidebar: #ffffff;
+    --bg-header: rgba(255, 255, 255, 0.92);
+    --text: #1c2405;
+    --text-muted: #5f6b45;
+    --border: #dce8bd;
+    --shadow: 0 1px 3px rgba(28, 36, 5, 0.08), 0 1px 2px rgba(28, 36, 5, 0.04);
+    --shadow-lg: 0 10px 30px -5px rgba(77, 124, 15, 0.18), 0 4px 10px rgba(28, 36, 5, 0.06);
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ---------- Variante SOMBRE ---------- */
+html[data-theme="dark"] body.theme-neon {
+    --primary: #c8f31d;
+    --primary-hover: #daff3d;
+    --secondary: #9dbf0f;
+    --success: #22c55e;
+    --warning: #facc15;
+    --danger: #f87171;
+    --info: #38bdf8;
+    --bg: #17170f;
+    --bg-card: #201f16;
+    --bg-sidebar: #201f16;
+    --bg-header: rgba(20, 20, 13, 0.92);
+    --text: #f4f4ec;
+    --text-muted: #a6a695;
+    --border: #34331f;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 24px rgba(200, 243, 29, 0.08);
+}
+
+/* ---------- Composants partagés ---------- */
+body.theme-neon .nav-link:hover,
+body.theme-neon .nav-link.active { background: var(--primary); box-shadow: 0 0 16px rgba(120, 180, 20, 0.25); }
+body.theme-neon .theme-toggle { border-color: var(--border); color: var(--text); }
+body.theme-neon .theme-toggle:hover { background: var(--primary); }
+body.theme-neon .btn-ghost { color: var(--text-muted); }
+body.theme-neon .btn-ghost:hover { color: var(--danger); }
+body.theme-neon .sidebar-title { color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; }
+body.theme-neon .sidebar-link:hover { background: rgba(120, 180, 20, 0.14); color: var(--primary); }
+body.theme-neon .stat-value { color: var(--primary); }
+body.theme-neon .hero { background: radial-gradient(ellipse at 50% 0%, rgba(120, 180, 20, 0.1), transparent 60%); padding: 4rem 1rem 3rem; color: var(--text); }
+body.theme-neon .hero h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.01em; }
+body.theme-neon .hero-subtitle { color: var(--text-muted); opacity: 1; }
+body.theme-neon .hero-badge { color: #000; }
+body.theme-neon .hero .btn-outline { border-color: var(--primary); color: var(--primary); }
+body.theme-neon .btn-primary { background: var(--primary); font-weight: 700; }
+body.theme-neon .btn-primary:hover { background: var(--primary-hover); }
+body.theme-neon .btn-outline { border-color: var(--primary); color: var(--primary); }
+body.theme-neon .btn-outline:hover { background: var(--primary); }
+body.theme-neon .badge { background: var(--primary); }
+body.theme-neon .link-item:hover { border-color: var(--primary); }
+body.theme-neon .link-item.link-top { border-left-color: var(--primary); }
+body.theme-neon .points-badge { color: var(--primary); }
+body.theme-neon .link-rank.rank-gold { color: var(--primary); }
+body.theme-neon .stat-icon { background: var(--primary); }
+body.theme-neon .stat-icon.bg-success,
+body.theme-neon .stat-icon.bg-info,
+body.theme-neon .stat-icon.bg-warning { background: rgba(120, 180, 20, 0.15); color: var(--primary); }
+body.theme-neon .form-control { border-color: var(--border); color: var(--text); }
+body.theme-neon .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(120, 180, 20, 0.2); }
+body.theme-neon .table tr:hover { background: rgba(120, 180, 20, 0.06); }
+body.theme-neon .page-link { border-color: var(--border); color: var(--text); }
+body.theme-neon .page-link:hover,
+body.theme-neon .page-link.active { background: var(--primary); border-color: var(--primary); }
+body.theme-neon .vip-card:hover { border-color: var(--primary); }
+body.theme-neon .vip-badge { background: var(--primary); }
+body.theme-neon .vip-price { color: var(--primary); }
+body.theme-neon .error-page h1 { color: var(--primary); }
+
+/* ---------- Ajustements spécifiques CLAIRE ---------- */
+html[data-theme="light"] body.theme-neon ::selection { background: var(--primary); color: #ffffff; }
+html[data-theme="light"] body.theme-neon .logo { color: var(--primary); }
+html[data-theme="light"] body.theme-neon .nav-link:hover,
+html[data-theme="light"] body.theme-neon .nav-link.active { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .theme-toggle:hover { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .hero h1 { color: #1c2405; }
+html[data-theme="light"] body.theme-neon .hero .btn-outline:hover { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .btn-primary { color: #ffffff; box-shadow: 0 4px 14px rgba(77, 124, 15, 0.25); }
+html[data-theme="light"] body.theme-neon .btn-primary:hover { color: #ffffff; box-shadow: 0 6px 18px rgba(77, 124, 15, 0.35); }
+html[data-theme="light"] body.theme-neon .btn-outline:hover { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .badge { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .stat-icon { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .form-control { background: #ffffff; }
+html[data-theme="light"] body.theme-neon .page-link:hover,
+html[data-theme="light"] body.theme-neon .page-link.active { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .vip-badge { color: #ffffff; }
+html[data-theme="light"] body.theme-neon .auth-card h1 { color: #1c2405; }
+html[data-theme="light"] body.theme-neon .alert-success { background: rgba(22, 163, 74, 0.08); color: #166534; border-color: rgba(22, 163, 74, 0.35); }
+html[data-theme="light"] body.theme-neon .alert-danger { background: rgba(220, 38, 38, 0.08); color: #991b1b; border-color: rgba(220, 38, 38, 0.35); }
+html[data-theme="light"] body.theme-neon .alert-info { background: rgba(2, 132, 199, 0.08); color: #075985; border-color: rgba(2, 132, 199, 0.35); }
+html[data-theme="light"] body.theme-neon .alert-warning { background: rgba(202, 138, 4, 0.08); color: #854d0e; border-color: rgba(202, 138, 4, 0.35); }
+
+/* ---------- Ajustements spécifiques SOMBRE ---------- */
+html[data-theme="dark"] body.theme-neon ::selection { background: var(--primary); color: #141408; }
+html[data-theme="dark"] body.theme-neon .logo { color: var(--primary); text-shadow: 0 0 14px rgba(200, 243, 29, 0.5); }
+html[data-theme="dark"] body.theme-neon .nav-link:hover,
+html[data-theme="dark"] body.theme-neon .nav-link.active { color: #141408; box-shadow: 0 0 16px rgba(200, 243, 29, 0.35); }
+html[data-theme="dark"] body.theme-neon .theme-toggle:hover { color: #141408; }
+html[data-theme="dark"] body.theme-neon .stat-value { text-shadow: 0 0 10px rgba(200, 243, 29, 0.4); }
+html[data-theme="dark"] body.theme-neon .hero { background: radial-gradient(ellipse at 50% 0%, rgba(200, 243, 29, 0.08), transparent 60%); }
+html[data-theme="dark"] body.theme-neon .hero h1 { color: #ffffff; text-shadow: 0 0 30px rgba(200, 243, 29, 0.35); }
+html[data-theme="dark"] body.theme-neon .hero .btn-outline:hover { color: #141408; }
+html[data-theme="dark"] body.theme-neon .btn-primary { color: #141408; box-shadow: 0 0 18px rgba(200, 243, 29, 0.3); }
+html[data-theme="dark"] body.theme-neon .btn-primary:hover { color: #141408; box-shadow: 0 0 26px rgba(200, 243, 29, 0.5); }
+html[data-theme="dark"] body.theme-neon .btn-outline:hover { color: #141408; }
+html[data-theme="dark"] body.theme-neon .badge { color: #141408; }
+html[data-theme="dark"] body.theme-neon .lang-switch a.active { color: #141408; }
+html[data-theme="dark"] body.theme-neon .stat-icon { color: #141408; box-shadow: 0 0 14px rgba(200, 243, 29, 0.3); }
+html[data-theme="dark"] body.theme-neon .points-badge { text-shadow: 0 0 12px rgba(200, 243, 29, 0.45); }
+html[data-theme="dark"] body.theme-neon .form-control { background: #191811; }
+html[data-theme="dark"] body.theme-neon .page-link:hover,
+html[data-theme="dark"] body.theme-neon .page-link.active { color: #141408; }
+html[data-theme="dark"] body.theme-neon .vip-card:hover { box-shadow: 0 0 24px rgba(200, 243, 29, 0.2); }
+html[data-theme="dark"] body.theme-neon .vip-badge { color: #141408; box-shadow: 0 0 14px rgba(200, 243, 29, 0.4); }
+html[data-theme="dark"] body.theme-neon .vip-price { text-shadow: 0 0 16px rgba(200, 243, 29, 0.4); }
+html[data-theme="dark"] body.theme-neon .auth-card h1 { color: #ffffff; text-shadow: 0 0 18px rgba(200, 243, 29, 0.3); }
+html[data-theme="dark"] body.theme-neon .error-page h1 { text-shadow: 0 0 30px rgba(200, 243, 29, 0.5); }
+html[data-theme="dark"] body.theme-neon .alert-success { background: rgba(34, 197, 94, 0.12); color: #86efac; border-color: rgba(34, 197, 94, 0.4); }
+html[data-theme="dark"] body.theme-neon .alert-danger { background: rgba(248, 113, 113, 0.12); color: #fca5a5; border-color: rgba(248, 113, 113, 0.4); }
+html[data-theme="dark"] body.theme-neon .alert-info { background: rgba(56, 189, 248, 0.12); color: #7dd3fc; border-color: rgba(56, 189, 248, 0.4); }
+html[data-theme="dark"] body.theme-neon .alert-warning { background: rgba(250, 204, 21, 0.12); color: #fde047; border-color: rgba(250, 204, 21, 0.4); }
+
+/* Responsive : titre hero réduit sur mobile */
+@media (max-width: 768px) {
+    body.theme-neon .hero h1 { font-size: 2rem; }
+}

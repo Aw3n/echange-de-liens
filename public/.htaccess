@@ -1,0 +1,47 @@
+# ============================================================
+# Echange de Liens - Configuration Apache
+# Compatible hébergement mutualisé, sous-domaines et sous-dossiers
+# ============================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Alias sans extension pour l'installateur (/install -> install.php)
+    RewriteRule ^install$ install.php [L]
+
+    # Rediriger robots.txt et sitemap.xml vers PHP
+    RewriteRule ^robots\.txt$ index.php?_url=/robots.txt [L,QSA]
+    RewriteRule ^sitemap\.xml$ index.php?_url=/sitemap.xml [L,QSA]
+
+    # Ne pas réécrire les fichiers et dossiers existants
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Front controller
+    RewriteRule ^(.*)$ index.php?_url=/$1 [L,QSA]
+</IfModule>
+
+# ============================================================
+# En-têtes de sécurité (optionnels — ignorés si non supportés)
+# ============================================================
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ============================================================
+# Compression GZIP (performance)
+# ============================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml
+    AddOutputFilterByType DEFLATE text/css application/javascript application/json
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ============================================================
+# Encodage caractères
+# ============================================================
+AddDefaultCharset UTF-8

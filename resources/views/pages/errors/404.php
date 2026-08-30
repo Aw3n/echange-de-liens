@@ -1,0 +1,1 @@
+<div class="error-page"><h1>404</h1><p>Page non trouvée</p><a href="" class="btn btn-primary"><i class="fas fa-home"></i> Retour à l'accueil</a></div>
