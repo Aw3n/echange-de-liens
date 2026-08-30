@@ -220,10 +220,11 @@ class VisitService
         }
 
         if ($visitorId !== null) {
-            // Bannière utilisateur : débite atomiquement le budget
-            // (5 pts/clic) ; les bannières admin (sans propriétaire) sont
-            // promotionnelles et ne débitent aucun budget.
-            if ((int) $ad['user_id'] > 0) {
+            // Bannière dotée d'un budget (assigné par l'admin ou propriétaire
+            // utilisateur) : débite atomiquement le budget (5 pts/clic).
+            // Une bannière admin sans budget reste promotionnelle (clic compté
+            // sans débit).
+            if ((int) $ad['user_id'] > 0 || (int) $ad['points_assigned'] > 0) {
                 $updated = $db->execute(
                     "UPDATE ads SET points_assigned = GREATEST(0, points_assigned - ?), clicks = clicks + 1
                      WHERE id = ? AND is_active = 1 AND is_approved = 1 AND points_assigned >= ?",
