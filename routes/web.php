@@ -155,6 +155,7 @@ $router->group('/admin', function ($router) {
     $router->get('/links/more', [AdminController::class, 'linksMore']);
     $router->post('/links/add', [AdminController::class, 'addLink']);
     $router->post('/links/edit', [AdminController::class, 'editLink']);
+    $router->post('/links/delete', [AdminController::class, 'deleteLink']);
     $router->get('/reports', [AdminController::class, 'reports']);
     $router->post('/reports/resolve', [AdminController::class, 'resolveReport']);
     $router->get('/banners', [AdminController::class, 'banners']);

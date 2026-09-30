@@ -39,7 +39,7 @@
 
 <!-- Liste des liens (édition inline) -->
 <div class="card"><div class="card-body"><div class="table-responsive"><table class="table">
-<thead><tr><th>ID</th><th>URL</th><th>Utilisateur</th><th colspan="3">Points / Actif / Blacklist</th><th>Visites</th><th>Date</th></tr></thead>
+<thead><tr><th>ID</th><th>URL</th><th>Utilisateur</th><th colspan="3">Points / Actif / Blacklist</th><th>Visites</th><th>Date</th><th>Actions</th></tr></thead>
 <tbody id="adminLinksBody"><?php \App\Core\View::include('partials.admin_link_rows', ['links' => $links]); ?></tbody></table></div>
 <?php if (($total ?? 0) > count($links)): ?>
 <div class="text-center" style="margin-top:0.75rem;">

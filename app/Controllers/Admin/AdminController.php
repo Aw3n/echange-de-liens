@@ -12,6 +12,7 @@ use App\Core\View;
 use App\Repositories\UserRepository;
 use App\Repositories\LinkRepository;
 use App\Repositories\VisitRepository;
+use App\Services\LinkService;
 use App\Services\XelisService;
 use App\Services\KaspaService;
 use App\Services\FiroService;
@@ -260,7 +261,8 @@ class AdminController extends Controller
     }
 
     /**
-     * Modifier points, statut et blacklist d'un lien
+     * Modifier un lien : points, statut, blacklist — et en édition
+     * complète, l'URL et le titre (champs absents du formulaire inline).
      */
     public function editLink(Request $request, Response $response): never
     {
@@ -274,14 +276,72 @@ class AdminController extends Controller
         $isActive = (int) $request->post('is_active', '1');
         $isBlacklisted = (int) $request->post('is_blacklisted', '0');
 
-        $linkRepo = new LinkRepository();
-        $linkRepo->update($linkId, [
+        $data = [
             'points' => $points,
             'is_active' => $isActive,
             'is_blacklisted' => $isBlacklisted,
-        ]);
+        ];
+
+        // Édition complète : l'URL est fournie → valider et mettre à jour
+        $url = trim((string) $request->post('url', ''));
+        if ($url !== '') {
+            if (!filter_var($url, FILTER_VALIDATE_URL)) {
+                $this->redirectWithError('/admin/links', 'URL invalide.');
+            }
+
+            $db = Database::getInstance();
+            $link = $db->queryOne("SELECT * FROM links WHERE id = ?", [$linkId]);
+            if (!$link) {
+                $this->redirectWithError('/admin/links', 'Lien introuvable.');
+            }
+
+            $dup = $db->queryOne(
+                "SELECT id FROM links WHERE url = ? AND user_id = ? AND id <> ?",
+                [$url, (int) $link['user_id'], $linkId]
+            );
+            if ($dup) {
+                $this->redirectWithError('/admin/links', 'Cet utilisateur a déjà un lien avec cette URL.');
+            }
+
+            $title = trim((string) $request->post('title', ''));
+            $data['url'] = $url;
+            $data['title'] = $title !== '' ? $title : null;
+        }
+
+        $linkRepo = new LinkRepository();
+        $linkRepo->update($linkId, $data);
 
         $this->redirectWithSuccess('/admin/links', 'Lien mis à jour.');
+    }
+
+    /**
+     * Supprimer un lien (les points restants sont remboursés au propriétaire)
+     */
+    public function deleteLink(Request $request, Response $response): never
+    {
+        $this->requireAdmin($request);
+        if (!$this->verifyCsrf($request)) {
+            $this->redirectWithError('/admin/links', 'CSRF invalide.');
+        }
+
+        $linkId = (int) $request->post('link_id');
+        $adminId = (int) Session::user()['id'];
+
+        $linkService = new LinkService();
+        if ($linkService->deleteLink($linkId, $adminId, true)) {
+            $db = Database::getInstance();
+            $db->insert('logs', [
+                'level' => 'info',
+                'channel' => 'admin',
+                'message' => "Lien #{$linkId} supprimé par l'admin (points restants remboursés)",
+                'user_id' => $adminId,
+                'created_at' => date('Y-m-d H:i:s'),
+            ]);
+
+            $this->redirectWithSuccess('/admin/links', "Lien #{$linkId} supprimé. Points restants remboursés au propriétaire.");
+        }
+
+        $this->redirectWithError('/admin/links', 'Impossible de supprimer ce lien (introuvable ?).');
     }
 
     /**
