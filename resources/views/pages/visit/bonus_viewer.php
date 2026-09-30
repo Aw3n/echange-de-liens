@@ -14,7 +14,14 @@
             <div class="viewer-timer"><i class="fas fa-clock"></i> <span id="countdown"><?= $duration ?></span>s</div>
             <div class="viewer-progress"><div class="viewer-progress-bar" id="progressBar"></div></div>
         </div>
-        <div class="viewer-header-right"><span><?= e($ad['title']) ?></span></div>
+        <div class="viewer-header-right">
+            <?php if (!empty($ad['target_url'])): ?>
+            <a href="<?= e($ad['target_url']) ?>" target="_blank" rel="noopener noreferrer" class="viewer-open-btn" title="<?= e(tr('Ouvrir le site')) ?>">
+                <i class="fas fa-external-link-alt"></i> <?= e(tr('Ouvrir le site')) ?>
+            </a>
+            <?php endif; ?>
+            <span class="viewer-site-name"><?= e(truncate($ad['title'], 40)) ?></span>
+        </div>
     </div>
     <div class="viewer-iframe-container">
         <?php if ($ad['target_url']): ?>
