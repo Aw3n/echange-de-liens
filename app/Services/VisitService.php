@@ -220,21 +220,17 @@ class VisitService
         }
 
         if ($visitorId !== null) {
-            // Bannière dotée d'un budget (assigné par l'admin ou propriétaire
-            // utilisateur) : débite atomiquement le budget (5 pts/clic).
-            // Une bannière admin sans budget reste promotionnelle (clic compté
-            // sans débit).
-            if ((int) $ad['user_id'] > 0 || (int) $ad['points_assigned'] > 0) {
-                $updated = $db->execute(
-                    "UPDATE ads SET points_assigned = GREATEST(0, points_assigned - ?), clicks = clicks + 1
-                     WHERE id = ? AND is_active = 1 AND is_approved = 1 AND points_assigned >= ?",
-                    [$pointsPerClick, $adId, $pointsPerClick]
-                );
-                if ($updated === 0) {
-                    return ['success' => false, 'message' => 'Budget de la bannière épuisé.'];
-                }
-            } else {
-                $db->execute("UPDATE ads SET clicks = clicks + 1 WHERE id = ?", [$adId]);
+            // Toute bannière (admin ou utilisateur) distribue ses points
+            // depuis son budget : débit atomique (5 pts/clic). Un budget
+            // épuisé (< 5 pts) bloque le clic — la bannière n'apparaît plus
+            // sur /bonus de toute façon.
+            $updated = $db->execute(
+                "UPDATE ads SET points_assigned = GREATEST(0, points_assigned - ?), clicks = clicks + 1
+                 WHERE id = ? AND is_active = 1 AND is_approved = 1 AND points_assigned >= ?",
+                [$pointsPerClick, $adId, $pointsPerClick]
+            );
+            if ($updated === 0) {
+                return ['success' => false, 'message' => 'Budget de la bannière épuisé.'];
             }
 
             // Enregistre le clic (verrou anti-spam)

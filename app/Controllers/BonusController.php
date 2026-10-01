@@ -21,15 +21,16 @@ class BonusController extends Controller
     {
         $db = Database::getInstance();
 
-        // Bannières actives et approuvées avec des points
-        // (les bannières admin sans propriétaire sont toujours visibles)
+        // Bannières actives et approuvées disposant encore d'un budget :
+        // une bannière épuisée (0 point) disparaît de la page Bonus
+        // (valable aussi pour les bannières créées par l'admin).
         $banners = $db->query(
             "SELECT a.*, u.username
              FROM ads a
              LEFT JOIN users u ON u.id = a.user_id
              WHERE a.is_active = 1
                AND a.is_approved = 1
-               AND (a.points_assigned > 0 OR a.user_id IS NULL)
+               AND a.points_assigned > 0
                AND a.type = 'banner'
              ORDER BY a.points_assigned DESC, RAND()"
         );

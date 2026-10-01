@@ -112,6 +112,12 @@ class VisitController extends Controller
             $this->redirectWithError('/bonus', 'Bannière non disponible.');
         }
 
+        // Budget épuisé : la bannière ne distribue plus de points
+        $perClick = (int) \App\Core\Config::get('app.points.per_banner_click', 5);
+        if ((int) $ad['points_assigned'] < $perClick) {
+            $this->redirectWithError('/bonus', 'Le budget de cette bannière est épuisé.');
+        }
+
         // Le compteur de clics est incrémenté uniquement lors de la
         // validation (validateBannerClick), pas à l'ouverture du viewer.
         $this->view('pages.visit.bonus_viewer', [
