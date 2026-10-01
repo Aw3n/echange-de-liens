@@ -21,18 +21,20 @@ class BonusController extends Controller
     {
         $db = Database::getInstance();
 
-        // Bannières actives et approuvées disposant encore d'un budget :
-        // une bannière épuisée (0 point) disparaît de la page Bonus
-        // (valable aussi pour les bannières créées par l'admin).
+        // Bannières actives et approuvées dont le budget couvre au moins
+        // un clic : une bannière épuisée (ou insuffisante) disparaît de la
+        // page Bonus (valable aussi pour les bannières créées par l'admin).
+        $perClick = (int) \App\Core\Config::get('app.points.per_banner_click', 5);
         $banners = $db->query(
             "SELECT a.*, u.username
              FROM ads a
              LEFT JOIN users u ON u.id = a.user_id
              WHERE a.is_active = 1
                AND a.is_approved = 1
-               AND a.points_assigned > 0
+               AND a.points_assigned >= ?
                AND a.type = 'banner'
-             ORDER BY a.points_assigned DESC, RAND()"
+             ORDER BY a.points_assigned DESC, RAND()",
+            [$perClick]
         );
 
         $this->view('pages.bonus', [
